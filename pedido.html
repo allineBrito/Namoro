@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casal?</title>
+
+    <style>
+        body {
+            background-color: rgb(245, 128, 128);
+        }
+
+        .painel {
+            margin: auto;
+            background-color: white;
+            width: 500px;
+            height: 500px;
+            border-radius: 20px;
+            text-align: center;
+            padding-top: 50px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, Helvetica, sans-serif;
+        }
+
+        #sim {
+            height: 40px;
+            width:60px;
+            background-color:red;
+            border: 2px solid white;
+            border-radius:10px;
+            color:white;
+            margin-left: -50px;
+        }
+        #nao {
+            position:absolute;
+            height: 40px;
+            width:60px;
+            background-color:rgb(209, 27, 230);
+            border:2px solid white;
+            border-radius:10px;
+            color:white;
+            margin-left: 10px;
+        }
+        .canto-inferior-direito {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            font-size: 15px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="painel">
+        <h1>E vem a grande pergunta</h1>
+        <img src="https://i.pinimg.com/originals/3b/7f/33/3b7f334e3d4dbd1a6d4d9d7d81172c9a.gif" alt="gif urso coracao">
+        <h2>Quer namorar comigo?</h2>
+        <button id="sim">Não!</button>
+        <button onmouseover="runAway()" id="nao">Sim!</button>
+
+        <div class="canto-inferior-direito">
+            <p>Não quero soltar sua mão tão cedo </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('sim').addEventListener('click', function() {
+            window.location.href = 'https://i.pinimg.com/originals/0b/8c/08/0b8c081b7b05dcc0aad6238856ea87d2.gif'; 
+        });
+        
+        function runAway() {
+            const fugitive = document.getElementById('nao');
+
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+
+            const maxX = windowWidth - fugitive.offsetWidth;
+            const maxY = windowHeight - fugitive.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            fugitive.style.left = randomX + 'px';
+            fugitive.style.top = randomY + 'px';
+
+        }
+    </script>
+</body>
+</html>
