@@ -1,0 +1,153 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrato de Namoro?</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('test.jpg'); /* Insira aqui o URL da sua imagem */
+            background-size: 30%; /* Tamanho da imagem de fundo */
+            background-position: right bottom; /* Posicionamento da imagem de fundo */
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Mantém a imagem no lugar enquanto a página é rolada */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0.9; /* Opacidade da imagem de fundo */
+        }
+        h1 {
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efeito de sombra no texto */
+        }
+        h2 {
+            font-size: 28px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Efeito de sombra no texto */
+        }
+    
+        .sections {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .commitment,
+        .propertyRegime {
+            font-size: 18px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .clauses {
+            text-align: left;
+            margin-left: 20px;
+            margin-top: 30px;
+        }
+        .agreement {
+            margin-top: 20px;
+        }
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Seja bem-vindo!</h1>
+
+    <h2 id="nomeSaudacao"></h2>
+
+    <div class="commitment">
+        <div class="commitment">
+            <h3>Compromisso de Namoro</h3>
+            <p>Ao escolher a opção "Sim" abaixo, você confirma que vocês estão namorando e que a intenção das partes é de apenas manterem um namoro e que não há por parte de vocês o intuito de constituir família. Ainda que haja pernoites, viagens, cohabitação, a vontade das partes é de que a relação seja estritamente de namoro.</p>
+            <p>Você confirma que este relacionamento é um namoro?</p>
+            <input type="radio" id="simNamoro" name="confirmNamoro" value="sim">
+            <label for="simNamoro">Sim</label>
+            <input type="radio" id="naoNamoro" name="confirmNamoro" value="nao">
+            <label for="naoNamoro">Não</label>
+        </div>
+
+        <div class="propertyRegime">
+            <h3>Regime de Bens</h3>
+            <p>Embora esta seja apenas uma relação de namoro, as partes esclarecem que o relacionamento estabelecido é firmado com separação total de bens. E na hipótese do relacionamento evoluir para uma união estável, será firmado um novo contrato, sendo que este também será pelo regime da separação total de bens.</p>
+            <p>Você aceita regime de separação de bens?</p>
+            <input type="radio" id="simSeparacao" name="confirmSeparacao" value="sim">
+            <label for="simSeparacao">Sim</label>
+            <input type="radio" id="naoSeparacao" name="confirmSeparacao" value="nao">
+            <label for="naoSeparacao">Não</label>
+        </div>
+    </div>
+
+    
+    <div class="clauses">
+        <h3>Cláusulas do Contrato</h3>
+
+        <p><strong>Cláusula 1 - Definição</strong></p>
+        <p>As partes definem que a presente relação é um contrato de namoro, não se configurando como união estável.</p>
+
+        <p><strong>Cláusula 2 - Fidelidade</strong></p>
+        <p>As partes acordam que serão fiéis uma à outra durante o período de vigência do presente contrato.</p>
+
+        <p><strong>Cláusula 3 -  Uso de redes sociais</strong></p>
+        <p>As partes concordam que não irão postar fotos ou informações pessoais sobre o relacionamento nas redes sociais.</p>
+
+        <p><strong>Cláusula 4 - Tempo mínimo de namoro </strong></p>
+        <p>As partes estabelecem que o presente contrato de namoro terá duração de 6 meses. Após esse período, o contrato será automaticamente rescindido, salvo se as partes acordarem em prorrogar seu prazo de vigência.</p>
+
+        <p><strong>Cláusula 5 - Rescisão</strong></p>
+        <p>O presente contrato poderá ser rescindido a qualquer tempo por qualquer uma das partes, mediante aviso prévio de 30 (trinta) dias.</p>
+    </div>
+    
+    <div class="agreement">
+        <h3>Concordância</h3>
+        <p>Concordo com todas as cláusulas do contrato.</p>
+        <input type="checkbox" id="concordo" name="concordo" value="concordo">
+        <label for="concordo">Concordo</label>
+    </div>
+
+    <div class="button">
+        <button id="avancar" disabled>Avançar</button>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const nome = urlParams.get('nome');
+            const nomeSaudacao = document.getElementById('nomeSaudacao');
+
+            if (nome) {
+                nomeSaudacao.textContent = `Seja bem-vindo, ${nome}!`;
+            } else {
+                nomeSaudacao.textContent = 'Erro: Nome não encontrado.';
+            }
+
+            const simNamoro = document.getElementById('simNamoro');
+            const simSeparacao = document.getElementById('simSeparacao');
+            const concordo = document.getElementById('concordo');
+            const avancarBtn = document.getElementById('avancar');
+
+            simNamoro.addEventListener('change', checkAllOptions);
+            simSeparacao.addEventListener('change', checkAllOptions);
+            concordo.addEventListener('change', checkAllOptions);
+
+            function checkAllOptions() {
+                const allSim = simNamoro.checked && simSeparacao.checked && concordo.checked;
+                if (allSim) {
+                    avancarBtn.removeAttribute('disabled');
+                } else {
+                    avancarBtn.setAttribute('disabled', true);
+                }
+            }
+
+            avancarBtn.addEventListener('click', function() {
+                const allSim = simNamoro.checked && simSeparacao.checked && concordo.checked;
+                if (allSim) {
+                    window.location.href = 'confirmacao.html';
+                }
+            });
+        };
+    </script>
+</body>
+</html>
