@@ -1,0 +1,117 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aline e Júse?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('bonito.jpg'); /* Substitua pelo caminho da sua imagem de coração */
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+        form {
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente para melhor legibilidade */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .dedication {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            transform: translateX(-50%);
+            font-size: 8px;
+            text-align: left;
+        }
+        .creator {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <form id="contratoForm" action="contrato.html" method="get">
+        <h1>Contrato de Namoro - Informações Iniciais</h1>
+        
+        <label for="nome">Seu Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        
+        <div class="radio-option">
+            <input type="radio" id="uma_pessoa" name="quantidade" value="uma_pessoa">
+            <label for="uma_pessoa">Apenas duas pessoas</label>
+        </div>
+        <div class="radio-option">
+            <input type="radio" id="mais_de_uma" name="quantidade" value="mais_de_uma">
+            <label for="mais_de_uma">Mais de duas pessoas</label>
+        </div>
+        
+        <button type="button" onclick="validarContrato()">Avançar</button>
+    </form>
+
+    <div class="creator">
+        <p>Porque você merece uma coisa mais original.</p>
+    </div>
+    
+    <script>
+        function validarContrato() {
+            var apenasDuasPessoas = document.getElementById('uma_pessoa').checked;
+
+            if (!apenasDuasPessoas) {
+                alert('Erro: Contrato de não monogamia não é aceito.');
+                return;
+            }
+
+            var nome = document.getElementById('nome').value;
+            if (nome === "") {
+                alert('Por favor, preencha seu nome.');
+                return;
+            }
+
+            document.getElementById('contratoForm').submit();
+        }
+    </script>
+</body>
+</html>
+
